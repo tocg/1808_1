@@ -55,7 +55,7 @@ namespace TrainOne.One.API
             }
 
             app.UseRouting();
-
+            app.UseCors("1808cors");
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
