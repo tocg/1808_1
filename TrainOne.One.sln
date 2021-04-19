@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{874B3AD5-081E-41EB-81C5-FEDDC9CCBDE8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "document", "document", "{9C4182DA-2D40-487B-998D-8C12F7A881C6}"
+	ProjectSection(SolutionItems) = preProject
+		readme.txt = readme.txt
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainOne.Lib.DAL", "src\TrainOne.Lib.DAL\TrainOne.Lib.DAL.csproj", "{B0A61B8D-185B-4FFD-8352-F1857C7AEA6E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainOne.Lib.Common", "src\TrainOne.Lib.Common\TrainOne.Lib.Common.csproj", "{6127F3E8-4C7B-4B25-9A78-AA1C53B91A8E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B0A61B8D-185B-4FFD-8352-F1857C7AEA6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0A61B8D-185B-4FFD-8352-F1857C7AEA6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0A61B8D-185B-4FFD-8352-F1857C7AEA6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0A61B8D-185B-4FFD-8352-F1857C7AEA6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6127F3E8-4C7B-4B25-9A78-AA1C53B91A8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6127F3E8-4C7B-4B25-9A78-AA1C53B91A8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6127F3E8-4C7B-4B25-9A78-AA1C53B91A8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6127F3E8-4C7B-4B25-9A78-AA1C53B91A8E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B0A61B8D-185B-4FFD-8352-F1857C7AEA6E} = {874B3AD5-081E-41EB-81C5-FEDDC9CCBDE8}
+		{6127F3E8-4C7B-4B25-9A78-AA1C53B91A8E} = {874B3AD5-081E-41EB-81C5-FEDDC9CCBDE8}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {878384A1-7878-4673-A8D6-DB930A9380C8}
+	EndGlobalSection
+EndGlobal
