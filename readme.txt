@@ -15,3 +15,7 @@ TrainOne.One.Model		----数据实体
 TrainOne.Lib.Common		----通用帮助类
 TrainOne.One.WebAdmin	----后台管理Web端
 TrainOne.One.Api		----数据接口
+
+
+dfdgdfgf
+ghfhfhgfh
