@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TrainOne.Lib.Common;
+using TrainOne.One.API.Models;
 
 namespace TrainOne.One.API.Controllers
 {
@@ -17,14 +18,34 @@ namespace TrainOne.One.API.Controllers
     [ApiController]
     public class WxMiniAuthController : ControllerBase
     {
-        [Route("info"), HttpGet]
-        public IActionResult GetUserInfo(string code)
+        /// <summary>
+        /// 获取微信用户唯一标识
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
+        [Route("code2session"), HttpGet]
+        public IActionResult Code2Session(string code)
         {
-            //根据wx.login的code去获取用户信息（openid及secret）
+            //根据wx.login的code去获取唯一标识信息（openid及secret）
+            var obj = GetOpenidAndSessionkey(code);
 
-            var openid = GetOpenidAndSessionkey(code);
-            return Ok(openid);
+            return Ok(new
+            {
+                openid = obj.Item1,
+                session_key = obj.Item2
+            });
+        }
 
+        /// <summary>
+        /// 对手机号进行解码
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [Route("decodephone"), HttpPost]
+        public IActionResult DecodePhone(DecodePhoneModel model)
+        {
+            var phone = new DecodeDecryptData()?.Decrypt(model.EncryptedData, model.IV, model.SessionKey);
+            return Ok(phone);
         }
 
         #region 与微信服务器的请求
@@ -35,7 +56,7 @@ namespace TrainOne.One.API.Controllers
         /// <summary>
         /// 获取openid和session_key
         /// </summary>
-        private string GetOpenidAndSessionkey(string code)
+        private Tuple<string, string> GetOpenidAndSessionkey(string code)
         {
             try
             {
@@ -48,7 +69,7 @@ namespace TrainOne.One.API.Controllers
                 var openid = (string)jd["openid"];
                 var session_key = (string)jd["session_key"];
 
-                return openid;
+                return new Tuple<string, string>(openid, session_key);
             }
             catch (Exception ex)
             {

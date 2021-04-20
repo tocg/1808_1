@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\src\TrainOne.Lib.Common\TrainOne.Lib.Common.csproj" />
+    <ProjectReference Include="..\src\TrainOne.Lib.DAL\TrainOne.Lib.DAL.csproj" />
   </ItemGroup>
 
 </Project>

@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TrainOne.Lib.DAL;
 
 namespace TrainOne.One.API
 {
@@ -36,12 +37,14 @@ namespace TrainOne.One.API
             {
                 p.AddPolicy("1808cors", build =>
                 {
-                    build.SetIsOriginAllowed(_=>true) //允许所有的请求  .AllowAnyOrigin()
+                    build.SetIsOriginAllowed(_=>true) //允许所有的请求  .AllowAnyOrigin()                 
                     .AllowAnyHeader()
                     .AllowAnyMethod()
                     .AllowCredentials();
                 });
             });
+
+            services.AddTransient<MysqlDataAccess>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
