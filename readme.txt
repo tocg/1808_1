@@ -13,7 +13,8 @@ TrainOne.One.Model		----数据实体
 		Dto				----数据输出实体
 		Extend			----内部数据处理实体
 TrainOne.Lib.Common		----通用帮助类
-TrainOne.One.WebAdmin	----后台管理Web端
+TrainOne.One.Admin	----后台管理Web端
+		包含LayuiAdmin
 TrainOne.One.Api		----数据接口
 
 
