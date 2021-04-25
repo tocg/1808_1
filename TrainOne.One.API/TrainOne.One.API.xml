@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TrainOne.One.API</name>
+    </assembly>
+    <members>
+        <member name="T:TrainOne.One.API.Controllers.WorkController">
+            <summary>
+            工作日志文件
+            </summary>
+        </member>
+        <member name="M:TrainOne.One.API.Controllers.WorkController.Upload">
+            <summary>
+            upload file
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TrainOne.One.API.Controllers.WxMiniAuthController.Code2Session(System.String)">
+            <summary>
+            获取微信用户唯一标识
+            </summary>
+            <param name="code"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TrainOne.One.API.Controllers.WxMiniAuthController.DecodePhone(TrainOne.One.API.Models.DecodePhoneModel)">
+            <summary>
+            对手机号进行解码
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TrainOne.One.API.Controllers.WxMiniAuthController.GetOpenidAndSessionkey(System.String)">
+            <summary>
+            获取openid和session_key
+            </summary>
+        </member>
+        <member name="M:TrainOne.One.API.Models.DecodeDecryptData.Decrypt(System.String,System.String,System.String)">
+            <summary>
+            微信小程序解密算法
+            </summary>
+            <param name="encryptedData">加密数据</param>
+            <param name="iv">初始向量</param>
+            <param name="sessionKey">从服务端获取的SessionKey</param>
+            <returns></returns>
+        </member>
+        <member name="T:TrainOne.One.API.Models.DecodePhoneModel">
+            <summary>
+            微信手机号解密
+            </summary>
+        </member>
+    </members>
+</doc>

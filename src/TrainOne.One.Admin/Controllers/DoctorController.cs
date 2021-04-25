@@ -12,5 +12,10 @@ namespace TrainOne.One.Admin.Controllers
         {
             return View();
         }
+
+        public IActionResult Verify()
+        {
+            return View();
+        }
     }
 }

@@ -31,6 +31,12 @@ namespace TrainOne.One.API
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "TrainOne.One.API", Version = "v1" });
+
+                //为 Swagger JSON and UI设置xml文档注释路径
+                //（在这之前需要【项目】-【属性】-【生成】勾选xml文档）
+                var basePath = System.IO.Path.GetDirectoryName(typeof(Program).Assembly.Location);//获取应用程序所在目录（绝对，不受工作目录影响，建议采用此方法获取路径）
+                var xmlPath = System.IO.Path.Combine(basePath, "TrainOne.One.API.xml");
+                c.IncludeXmlComments(xmlPath);
             });
 
             services.AddCors(p =>

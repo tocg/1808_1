@@ -1,0 +1,124 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>List</title>
+    <link href="~/layuiadmin/layui/css/layui.css" rel="stylesheet" />
+    <script src="~/layuiadmin/layui/layui.js"></script>
+</head>
+<body>
+    <table class="layui-hide" id="test" lay-filter="test"></table>
+    <!--头部按钮-->
+    <script type="text/html" id="toolbarDemo">
+        <div class="layui-form-item">
+            <div class="layui-input-inline">
+                <select name="quiz1">
+                    <option value="">请选择省</option>
+                    <option value="浙江" selected="">浙江省</option>
+                    <option value="你的工号">江西省</option>
+                    <option value="你最喜欢的老师">福建省</option>
+                </select>
+            </div>
+            <div class="layui-input-inline">
+                <select name="quiz2">
+                    <option value="">请选择市</option>
+                    <option value="杭州">杭州</option>
+                    <option value="宁波" disabled="">宁波</option>
+                    <option value="温州">温州</option>
+                    <option value="温州">台州</option>
+                    <option value="温州">绍兴</option>
+                </select>
+            </div>
+            <div class="layui-input-inline">
+                <select name="quiz3">
+                    <option value="">请选择县/区</option>
+                    <option value="西湖区">西湖区</option>
+                    <option value="余杭区">余杭区</option>
+                    <option value="拱墅区">临安市</option>
+                </select>
+            </div>
+            <button class="layui-btn layui-btn-warm" lay-event="isSearch">查询</button>
+            <button class="layui-btn layui-btn-primary" lay-event="isAdd">添加</button>
+            <button class="layui-btn layui-btn-danger" lay-event="isDelete">批量删除</button>
+        </div>
+    </script>
+
+    <!--行工具栏-->
+    <script type="text/html" id="barDemo">
+        <a class="layui-btn layui-btn-xs" lay-event="edit">诊断记录</a>
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">基本信息</a>
+    </script>
+
+    <script>
+        layui.use(['table','form'], function () {
+            var table = layui.table;
+            var form = layui.form;
+
+            table.render({
+                elem: '#test'
+                , url: '/layuiadmin/data/doctor.json'
+                , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+                , toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
+                , defaultToolbar: []
+                , page: true
+                , cols: [[
+                    { type: 'checkbox' }
+                    , { field: 'username', width: 80, title: '姓名' }
+                    , { field: 'sex', width: 80, title: '性别' }
+                    , { field: 'city', width: 80, title: '年龄' }
+                    , { field: 'sign', title: '手机号',} //minWidth：局部定义当前单元格的最小宽度，layui 2.2.1 新增
+                    , { field: 'experience', title: '诊断次数' }
+                    , { field: 'score', title: '诊断总金额' }
+                    , { fixed: 'right', title: '操作', toolbar: '#barDemo'}
+                ]]
+            });
+
+            //头工具栏事件
+            table.on('toolbar(test)', function (obj) {
+                var checkStatus = table.checkStatus(obj.config.id);
+                switch (obj.event) {
+                    case 'isAdd':
+                        var data = checkStatus.data;
+                        layer.alert('添加数据');
+                        break;
+                    case 'isDelete':
+                        var data = checkStatus.data;
+                        layer.msg('选中了：' + data.length + ' 个，删除当心');
+                        break;
+                    case 'isSearch':
+                        layer.msg(checkStatus.isAll ? '全选' : '未全选');
+                        break;
+                };
+            });
+
+            //监听行工具事件
+            table.on('tool(test)', function (obj) {
+                var data = obj.data;
+                //console.log(obj)
+                if (obj.event === 'del') {
+                    layer.confirm('真的删除行么', function (index) {
+                        obj.del();
+                        layer.close(index);
+                    });
+                } else if (obj.event === 'edit') {
+                    layer.prompt({
+                        formType: 2
+                        , value: data.email
+                    }, function (value, index) {
+                        obj.update({
+                            email: value
+                        });
+                        layer.close(index);
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

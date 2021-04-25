@@ -5,6 +5,11 @@
     <UserSecretsId>c09e8991-d050-46e5-bb53-f478b137a3fd</UserSecretsId>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>F:\StudyDemo\Train_1808\TrainOne\TrainOne.One\TrainOne.One.API\TrainOne.One.API.xml</DocumentationFile>
+    <NoWarn>1701;1702;1591</NoWarn>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="LitJson" Version="0.17.0" />
     <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0" />

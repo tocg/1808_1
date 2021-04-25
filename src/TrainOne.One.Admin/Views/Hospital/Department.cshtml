@@ -1,0 +1,113 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Department</title>
+    <link href="~/layuiadmin/layui/css/layui.css" rel="stylesheet" />
+    <script src="~/layuiadmin/layui/layui.js"></script>
+    <script src="~/echarts/echarts.min.js"></script>
+    <style>
+        #main {
+            float: left;
+        }
+
+        .content {
+            margin-left: 620px;
+        }
+    </style>
+</head>
+<body>
+    <!--echarts官网
+        https://echarts.apache.org/zh/tutorial.html#5%20%E5%88%86%E9%92%9F%E4%B8%8A%E6%89%8B%20ECharts
+    -->
+    <div>
+        <div id="main" style="width: 600px;height: 500px;"></div>
+        <div class="content">
+            <table class="layui-hide" id="test" lay-filter="test"></table>
+
+            <script type="text/html" id="barDemo">
+                <a class="layui-btn layui-btn-xs" lay-event="detail">诊断记录</a>
+            </script>
+        </div>
+    </div>
+    <script>
+layui.use(['table', 'layer'], function () {
+            var layer = layui.layer;
+            var table = layui.table;
+
+            // 基于准备好的dom，初始化echarts实例
+            var myChart = echarts.init(document.getElementById('main'));
+
+            // 指定图表的配置项和数据
+            var option = {
+                title: {
+                    text: 'xxxxx医院'
+                },
+                tooltip: {},
+                legend: {
+                    data: ['数量']
+                },
+                xAxis: {
+                    data: ["儿科", "五官科", "妇科", "产科", "神经内科", "科骨"]
+                },
+                yAxis: {},
+                series: [{
+                    name: '数量',
+                    type: 'bar',
+                    data: [5, 20, 36, 10, 10, 20]
+                }]
+            };
+
+            // 使用刚指定的配置项和数据显示图表。
+            myChart.setOption(option);
+
+            myChart.on('click', function (params) {
+                console.log(params)
+                layer.msg(params.name);
+
+                table.render({
+                    elem: '#test'
+                    , url: '/layuiadmin/data/doctor.json'
+                    , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+                    , toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
+                    , defaultToolbar: []
+                    , page: true
+                    , cols: [[
+                        { type: 'checkbox' }
+                        , { field: 'username', title: '医院名称' }
+                        , { field: 'sex', width: 100, title: '所在城市' }
+                        , { field: 'city', width: 100, title: '医师数量' }
+                        , { field: 'sign', width: 100, title: '诊断次数', }
+                        , { field: 'experience', width: 100, title: '评价率' }
+                        , { title: '操作', width: 100, toolbar: '#barDemo' }
+                    ]]
+                });
+            });
+
+
+    //监听行工具事件
+    table.on('tool(test)', function (obj) {
+        var data = obj.data;
+        //console.log(obj)
+        if (obj.event === 'detail') {
+            layer.open({
+                type: 2,
+                title: '科室明细',
+                maxmin: true,
+                offset: '100px',
+                area: ['1100px', '410px'],
+                content: '/hospital/index'
+            });
+            
+        }
+    });
+        })
+    </script>
+</body>
+</html>
